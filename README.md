@@ -29,8 +29,9 @@ AWS CloudFormation é um processo que auxilia na criação de recursos na AWS po
 
 ## 3. ⚙️ O Template (`template.yaml`)
 
-Nosso template foi escrito em YAML e é composto pelas seguintes seções principais:
+Nosso template foi escrito em YAML, a seguir os trechos mais importantes:
 
+```
 01-EC2.yaml
 Description: Criar um Amazon EC2 simples
 Resources:
@@ -55,12 +56,6 @@ Resources:
           Value: "Webserver"
       UserData:
         Fn::Base64:
-          !Sub |
-            #!/bin/bash -xe
-            yum install -y httpd.x86_64
-            systemctl start httpd.service
-            systemctl enable httpd.service
-            echo "<h1>OLA AWS FOUNDATIONS do $(hostname -f)</h1>" > /var/www/html/index.html
 
 03-Firewall.yaml
 Description: Configurar Grupo de Segurança
@@ -76,9 +71,3 @@ Resources:
           Value: "Webserver"
       UserData:
         Fn::Base64:
-          !Sub |
-            #!/bin/bash -xe
-            yum install -y httpd.x86_64
-            systemctl start httpd.service
-            systemctl enable httpd.service
-            echo "<h1>OLA AWS FOUNDATIONS do $(hostname -f)</h1>" > /var/www/html/index.html
